@@ -1,0 +1,29 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { ProductCatalog } from '@/components/ProductCatalog';
+
+const entries = await getCollection('products');
+const products = entries.map((entry) => ({
+  id: entry.id,
+  name: entry.data.name,
+  category: entry.data.category,
+  price: entry.data.price,
+  isAvailable: entry.data.isAvailable,
+  isFeatured: entry.data.isFeatured,
+  tags: entry.data.tags,
+}));
+---
+
+<Layout title="Catalog">
+  <main class="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="mb-8 flex flex-col gap-2 text-center">
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Katalog Produk</h1>
+      <p class="text-muted-foreground">
+        Semua kue kering, kue basah, dan roti buatan Darufa ada di sini.
+      </p>
+    </div>
+
+    <ProductCatalog client:load products={products} />
+  </main>
+</Layout>

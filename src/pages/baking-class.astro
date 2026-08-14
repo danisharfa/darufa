@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Button } from '@/components/ui/button';
+---
+
+<Layout title="Baking Class">
+  <main class="grid h-screen place-items-center">
+    <div class="flex flex-col items-center gap-4">
+      <h1 class="text-3xl font-bold tracking-tight">Baking Class</h1>
+      <Button client:load>Click me</Button>
+    </div>
+  </main>
+</Layout>
