@@ -4,15 +4,17 @@ import { z } from 'astro/zod';
 
 const products = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/data/products' }),
-  schema: z.object({
-    name: z.string(),
-    category: z.enum(['kue-kering', 'kue-basah', 'roti']),
-    price: z.number(),
-    image: z.string(),
-    isAvailable: z.boolean().default(true),
-    isFeatured: z.boolean().default(false), // untuk preview di homepage
-    tags: z.array(z.string()).default([]), // misal: ["best-seller", "halal", "vegan"]
-  }),
+  schema: ({ image }) =>
+    z.object({
+      name: z.string(),
+      category: z.enum(['kue-kering', 'kue-basah', 'roti', 'cake-bolu']),
+      price: z.number(),
+      unit: z.string(), // satuan jual, mis. "pcs", "loyang", "toples", "box"
+      image: image(),
+      isAvailable: z.boolean().default(true), // false = pre-order (bukan habis)
+      isFeatured: z.boolean().default(false), // untuk preview di homepage
+      isBestSeller: z.boolean().default(false),
+    }),
 });
 
 export const collections = { products };

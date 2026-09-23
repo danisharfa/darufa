@@ -1,35 +1,25 @@
 ---
 import { Badge } from '@/components/ui/badge';
 import { HeroActions } from '@/components/HeroActions';
-import HeroStats from '@/components/HeroStats.astro';
+import HeroCategories from '@/components/HeroCategories.astro';
 ---
 
-<section class="relative overflow-hidden">
-  <div
-    class="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-secondary/25 blur-3xl"
-  >
-  </div>
-  <div
-    class="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-accent/25 blur-3xl"
-  >
-  </div>
-
+<section class="relative">
   <div
     class="relative mx-auto flex w-full max-w-6xl flex-col items-center gap-6 px-4 py-20 text-center sm:px-6 sm:py-28 lg:px-8"
   >
-    <Badge variant="secondary">🍞 Fresh dipanggang setiap hari</Badge>
+    <Badge variant="outline" className="bg-muted text-muted-foreground">Pre-Order &amp; Ready Stock</Badge>
 
-    <h1 class="w-full max-w-2xl text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-      Kue &amp; Roti Rumahan yang Bikin <span class="text-primary">Kangen</span>
+    <h1 class="w-full text-balance font-heading text-4xl font-bold tracking-tight text-foreground sm:text-6xl md:text-7xl">
+      Kue &amp; Roti Buatan Rumahan
     </h1>
 
     <p class="w-full max-w-xl text-base text-muted-foreground sm:text-lg">
-      Darufa menghadirkan kue kering, kue basah, dan roti buatan tangan dengan bahan pilihan, tanpa
-      pengawet, dan rasa yang selalu konsisten setiap hari.
+      Dipesan online, tersedia ready stock atau pre-order. Ambil sendiri atau diantar sesuai area.
     </p>
 
     <HeroActions client:load />
 
-    <HeroStats />
+    <HeroCategories />
   </div>
 </section>

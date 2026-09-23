@@ -1,11 +1,12 @@
 ---
-name: "Risoles Mayo"
-category: "kue-basah"
+name: 'Risoles Mayo'
+category: 'kue-basah'
 price: 30000
-image: "/src/assets/200.svg"
+unit: 'porsi'
+image: '../../assets/risoles.jpg'
 isAvailable: true
 isFeatured: true
-tags: ["gurih", "best-seller"]
+isBestSeller: true
 ---
 
 Risoles isi ragout ayam dan mayonaise, digoreng garing.

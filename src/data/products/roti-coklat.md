@@ -2,10 +2,11 @@
 name: "Roti Coklat Keju"
 category: "roti"
 price: 15000
-image: "/src/assets/200.svg"
+unit: "pcs"
+image: "../../assets/200.svg"
 isAvailable: true
 isFeatured: true
-tags: ["best-seller"]
+isBestSeller: true
 ---
 
 Roti manis isi coklat dan keju, dipanggang setiap pagi.

@@ -1,0 +1,25 @@
+---
+import { HugeiconsIcon } from '@hugeicons/react';
+import { CookieIcon, CakeSliceIcon, Bread01Icon, CakeIcon } from '@hugeicons/core-free-icons';
+
+const categories = [
+  { href: '/catalog?category=kue-kering', label: 'Kue Kering', icon: CookieIcon },
+  { href: '/catalog?category=kue-basah', label: 'Kue Basah', icon: CakeSliceIcon },
+  { href: '/catalog?category=roti', label: 'Roti', icon: Bread01Icon },
+  { href: '/catalog?category=cake-bolu', label: 'Cake & Bolu', icon: CakeIcon },
+];
+---
+
+<div class="mt-4 flex flex-wrap items-center justify-center gap-3 border-t pt-8">
+  {
+    categories.map((item) => (
+      <a
+        href={item.href}
+        class="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+      >
+        <HugeiconsIcon icon={item.icon} strokeWidth={2} className="size-4 text-muted-foreground" />
+        {item.label}
+      </a>
+    ))
+  }
+</div>

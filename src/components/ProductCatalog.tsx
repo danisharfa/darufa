@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ProductCard, type Product } from '@/components/ProductCard';
@@ -8,11 +8,30 @@ const categories: { value: string; label: string }[] = [
   { value: 'kue-kering', label: 'Kue Kering' },
   { value: 'kue-basah', label: 'Kue Basah' },
   { value: 'roti', label: 'Roti' },
+  { value: 'cake-bolu', label: 'Cake & Bolu' },
 ];
+
+const categoryValues = new Set(categories.map((item) => item.value));
+
+function getInitialCategory() {
+  if (typeof window === 'undefined') return 'all';
+  const fromUrl = new URLSearchParams(window.location.search).get('category');
+  return fromUrl && categoryValues.has(fromUrl) ? fromUrl : 'all';
+}
 
 export function ProductCatalog({ products }: { products: Product[] }) {
   const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('all');
+  const [category, setCategory] = useState(getInitialCategory);
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (category === 'all') {
+      url.searchParams.delete('category');
+    } else {
+      url.searchParams.set('category', category);
+    }
+    window.history.replaceState(window.history.state, '', url);
+  }, [category]);
 
   const filtered = useMemo(() => {
     const query = search.trim().toLowerCase();

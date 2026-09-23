@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { HugeiconsIcon } from '@hugeicons/react';
 import { WhatsappIcon } from '@hugeicons/core-free-icons';
 import {
@@ -8,15 +9,25 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { Button } from '@/components/ui/button';
-import { MobileNavbar } from './MobileNavbar';
-import logo from '../assets/200.svg';
+import { MobileNavTrigger, MobileNavPanel } from './MobileNavbar';
+import type { ReactNode } from 'react';
 
-export function Navbar() {
+interface NavbarProps {
+  children?: ReactNode;
+}
+
+export function Navbar({ children }: NavbarProps) {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
+    <header
+      className={`sticky top-0 z-40 w-full border-b backdrop-blur-sm transition-colors ${
+        open ? 'bg-background' : 'bg-background/80 supports-backdrop-filter:bg-background/60'
+      }`}
+    >
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-10 px-4 sm:px-6 lg:px-8">
-        <a href="/" className="shrink-0">
-          <img src={logo.src} alt="Darufa" className="h-9 w-auto" />
+        <a href="/" className="shrink-0" aria-label="Darufa" onClick={() => setOpen(false)}>
+          {children}
         </a>
 
         {/* Desktop menu - hilang di mobile */}
@@ -24,7 +35,7 @@ export function Navbar() {
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuLink href="/catalog" className={navigationMenuTriggerStyle()}>
-                Catalog
+                Katalog
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
@@ -32,11 +43,11 @@ export function Navbar() {
                 Baking Class
               </NavigationMenuLink>
             </NavigationMenuItem>
-            <NavigationMenuItem>
+            {/* <NavigationMenuItem>
               <NavigationMenuLink href="/about" className={navigationMenuTriggerStyle()}>
-                About
+                Tentang
               </NavigationMenuLink>
-            </NavigationMenuItem>
+            </NavigationMenuItem> */}
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -44,7 +55,9 @@ export function Navbar() {
           <Button
             size="sm"
             variant="secondary"
-            render={<a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" />}
+            render={
+              <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" />
+            }
           >
             <HugeiconsIcon icon={WhatsappIcon} strokeWidth={2} className="size-4" />
             <span className="hidden sm:inline">Chat WA</span>
@@ -52,10 +65,12 @@ export function Navbar() {
 
           {/* Mobile menu - hilang di desktop */}
           <div className="md:hidden">
-            <MobileNavbar />
+            <MobileNavTrigger open={open} onToggle={() => setOpen((prev) => !prev)} />
           </div>
         </div>
       </div>
+
+      <MobileNavPanel open={open} onNavigate={() => setOpen(false)} />
     </header>
   );
 }

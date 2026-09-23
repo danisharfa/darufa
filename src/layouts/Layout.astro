@@ -2,14 +2,15 @@
 import '../styles/global.css';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import Logo from '@/assets/darufa-logo-horizontal.svg';
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const { title, description = 'Welcome to Darufa' } = Astro.props;
-const pageTitle = title ? `Darufa - ${title}` : 'Darufa';
+const { title, description = 'Welcome to DARUFA' } = Astro.props;
+const pageTitle = title ? `DARUFA - ${title}` : 'DARUFA';
 ---
 
 <!doctype html>
@@ -21,8 +22,12 @@ const pageTitle = title ? `Darufa - ${title}` : 'Darufa';
     <title>{pageTitle}</title>
   </head>
   <body>
-    <Navbar client:load />
+    <Navbar client:load>
+      <Logo class="h-8 w-auto" />
+    </Navbar>
     <slot />
-    <Footer client:load />
+    <Footer client:load>
+      <Logo class="h-9 w-auto" />
+    </Footer>
   </body>
 </html>

@@ -8,9 +8,15 @@ const products = entries.map((entry) => ({
   name: entry.data.name,
   category: entry.data.category,
   price: entry.data.price,
+  unit: entry.data.unit,
+  image: {
+    src: entry.data.image.src,
+    width: entry.data.image.width,
+    height: entry.data.image.height,
+  },
   isAvailable: entry.data.isAvailable,
   isFeatured: entry.data.isFeatured,
-  tags: entry.data.tags,
+  isBestSeller: entry.data.isBestSeller,
 }));
 ---
 

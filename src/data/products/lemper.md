@@ -2,10 +2,11 @@
 name: "Lemper Ayam"
 category: "kue-basah"
 price: 28000
-image: "/src/assets/200.svg"
+unit: "porsi"
+image: "../../assets/200.svg"
 isAvailable: true
 isFeatured: false
-tags: ["tradisional"]
+isBestSeller: false
 ---
 
 Ketan gurih berisi suwiran ayam, dibungkus daun pisang.
